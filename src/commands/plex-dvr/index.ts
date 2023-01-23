@@ -13,7 +13,6 @@ import { Logger, loggers } from "winston";
 import { spawnBinary } from "../../util";
 import setUpLogger from "../../logger";
 import {
-  COMCUT_OPTS,
   COMSKIP_OPTS,
   CCEXTRACTOR_ARGS,
   FFMPEG_OPTS,
@@ -113,10 +112,6 @@ export default class PlexDvr extends Command {
     "comskip-location": Flags.string({
       default: "comskip",
       description: "Comskip binary location",
-    }),
-    "comcut-location": Flags.string({
-      default: "comcut",
-      description: "Comcut binary location",
     }),
     "ccextractor-location": Flags.string({
       default: "ccextractor",
@@ -403,32 +398,6 @@ export default class PlexDvr extends Command {
         this.info(`Running ComSkip on '${fileName}'`);
 
         return spawnBinary(flags["comskip-location"], COMSKIP_OPTS);
-      }, this.catch)
-      /**
-       * Run Comcut if there's an edl file denoting chapter boundaries.
-       * If there isn't, create a blank ffmeta file that would have been
-       * output by Comcut.
-       * */
-      .then(() => {
-        if (existsSync(`${workingFile}.edl`)) {
-          this.info(`Commercials detected! Running Comcut on ${fileName}`);
-
-          COMCUT_OPTS.push(
-            `--comskip-ini="${comskipIniLocation}"`,
-            `--work-dir="${workingDir}"`,
-            `"${workingFile}.ts"`
-          );
-
-          return spawnBinary(flags["comcut-location"], COMCUT_OPTS);
-        }
-
-        if (!options["bypass-comskip"]) {
-          this.info("No commercials found");
-        }
-
-        this.verbose("Generating blank ffmeta");
-
-        return writeFile(`${workingFile}.ffmeta`, ";FFMETADATA1");
       }, this.catch)
       /**
        * Run ccextractor to convert closed captions into subtitles.

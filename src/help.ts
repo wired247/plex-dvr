@@ -22,8 +22,7 @@ the following:
 
 1. Copies the original ts to a subdirectory within the system tmpdir
 2. Runs \`comskip\` to find commercial boundaries*. If found, it
-    a. Deletes them using \`comcut\`
-    b. Generates chapter boundaries at commercial breaks
+    a. Generates chapter boundaries at commercial breaks
 3. Extracts closed captions as subtitles
 4. Remuxes to mp4 to add chapter markers
 5. Transcodes to mkv to compress and add subtitles
@@ -40,7 +39,6 @@ begin/end lines to the PMS logs. (maybe. hopefully.)
 \u001B[1mPREREQUISITES\u001B[0m
 ffmpeg: https://ffmpeg.org/
 comskip: https://github.com/erikkaashoek/Comskip
-comcut: https://github.com/BrettSheleski/comchap
 ccextractor: https://github.com/CCExtractor/ccextractor
 HandbrakeCLI: https://handbrake.fr/downloads.php
 

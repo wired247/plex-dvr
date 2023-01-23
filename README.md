@@ -13,8 +13,7 @@ the following:
 
 1. Copies the original ts to a subdirectory within the system tmpdir
 2. Runs `comskip` to find commercial boundaries*. If found, it
-    1. Deletes them using `comcut`
-    2. Generates chapter boundaries at commercial breaks
+    1. Generates chapter boundaries at commercial breaks
 3. Extracts closed captions as subtitles
 4. Remuxes to mp4 to add chapter markers
 5. Transcodes to mkv to compress and add subtitles
@@ -29,7 +28,6 @@ It does all of this while respecting quiet hours and ensuring only one file is b
 
 - **`ffmpeg`:** https://ffmpeg.org/
 - **`comskip`:** https://github.com/erikkaashoek/Comskip
-- **`comcut`:** https://github.com/BrettSheleski/comchap
 - **`ccextractor`:** https://github.com/CCExtractor/ccextractor
 - **`HandbrakeCLI`:** https://handbrake.fr/downloads.php
 
@@ -57,7 +55,6 @@ $ plex-dvr [options] [FILE]
 | `--quiet-time`, `-q` | string | Quiet time, in the format of `NN-NN` where NN is an hour on the 24-hour clock (0 being midnight, 23 being 11pm). Default value `03-12` because I am a night owl. |
 | `--ignore-quiet-time` | | Process file immediately without checking against quiet time hours. |
 | `--ccextractor-location` | string | [default: ccextractor] CCExtractor binary location |
-| `--comcut-location` | string | [default: comcut] Comcut binary location |
 | `--comskip-location` | string | [default: comskip] Comskip binary location |
 | `--ffmpeg-location` | string | [default: ffmpeg] ffmpeg binary location |
 | `--handbrake-location` | string | [default: HandBrakeCLI] Handbrake binary location |
